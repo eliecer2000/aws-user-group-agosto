@@ -1,16 +1,10 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "SPA Infra"
 Parameters:
-  # Parent CloudFormation stack name (for importing values)
   ParentStackName:
     Type: "String"
     Description: "Parent CloudFormation stack name"
     Default: ""
-  # CloudFrontCertificateArn:
-  #   Type: "String"
-  #   Description: "CloudFront ACM certificate ARN"
-  #   Default: "arn:aws:acm:us-east-1:628221610905:certificate/617b5a67-747a-4848-890d-8f54401f79b6"
-
 Conditions:
   HasParentStackName:
     Fn::Not:
@@ -59,12 +53,7 @@ Resources:
       DistributionConfig:
         Enabled: true
         HttpVersion: "http2"
-        #Aliases: !Ref "CloudFrontDomainAliases"
         WebACLId: !GetAtt "WebACL.Arn"
-        # ViewerCertificate:
-        #   #AcmCertificateArn: !Ref "CloudFrontCertificateArn"
-        #   SslSupportMethod: "sni-only"
-        #   MinimumProtocolVersion: "TLSv1.2_2018"
         Origins:
           - DomainName: !Sub "${S3Bucket}.s3.amazonaws.com"
             Id: !Sub "${S3Bucket}-s3-origin"
@@ -85,7 +74,6 @@ Resources:
             - "HEAD"
             - "OPTIONS"
           TargetOriginId: !Sub "${S3Bucket}-s3-origin"
-          #CachePolicyId: !Ref "CachePolicyId"
           ForwardedValues:
             QueryString: false
             Cookies:
