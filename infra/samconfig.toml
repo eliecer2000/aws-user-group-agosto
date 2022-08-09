@@ -1,0 +1,11 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "aws-user-group-spa"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1bhyj7dyaf01u"
+s3_prefix = "aws-user-group-spa"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "ParentStackName=\"aws-user-group-spa\""
+image_repositories = []
