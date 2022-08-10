@@ -3,7 +3,7 @@
     <q-header elevated>
       <q-toolbar>
         <q-toolbar-title> AWS User Group Panamá </q-toolbar-title>
-        <div>Version 1.0.0</div>
+        <div>Version 2.0.0</div>
       </q-toolbar>
     </q-header>
 
